@@ -3654,7 +3654,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Spritefont2.Acts.SetInstanceVar,
-		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.Platform.Cnds.OnLand,
 		C3.Plugins.Audio.Acts.PlayByName,
 		C3.Plugins.System.Exps.choose,
@@ -3667,6 +3666,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.LocalStorage.Cnds.OnItemGet,
 		C3.Plugins.LocalStorage.Exps.ItemValue,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
+		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.VKBridge.Acts.LeaderBoardVKUI,
 		C3.Plugins.googleplay.Cnds.IsSignedIn,
 		C3.Plugins.googleplay.Cnds.OnSignInFail,
@@ -3890,12 +3890,12 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => -5,
 		() => "",
 		() => 72,
-		() => 182,
+		() => 164,
 		() => 64,
 		() => 0.5,
-		() => 104,
-		() => 240,
+		() => 216,
 		() => 40,
+		() => 240,
 		() => 140,
 		p => {
 			const n0 = p._GetNode(0);
@@ -3913,7 +3913,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 0.6,
 		() => -360,
 		() => 1.6,
-		() => 0.4,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("tuk", Math.ceil(f0(1)));
