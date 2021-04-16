@@ -3935,7 +3935,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 	}
 
 	self.C3_ExpressionFuncs = [
-		() => -60,
+		() => -50,
 		() => 1,
 		() => 0,
 		p => {
