@@ -4037,7 +4037,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "photo_200",
 		() => "money",
-		() => "photo_50",
 		() => "user",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
