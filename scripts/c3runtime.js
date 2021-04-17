@@ -3713,6 +3713,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.Touch.Cnds.IsInTouch,
 		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Text.Acts.SetText,
@@ -3966,6 +3967,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("fps: ", f0());
 		},
+		() => 5,
+		() => 4,
 		() => 266,
 		() => "money",
 		p => {
@@ -3988,7 +3991,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 1);
 		},
-		() => 4,
 		() => 260,
 		() => 0.1,
 		p => {
@@ -4015,7 +4017,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(1, 2, 3, 4, 5);
 		},
-		() => 5,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject();
