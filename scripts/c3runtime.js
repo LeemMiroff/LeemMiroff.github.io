@@ -4087,7 +4087,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "Control2",
 		() => "fly",
-		() => 17,
 		() => "music_local",
 		() => "local_music"
 	];
