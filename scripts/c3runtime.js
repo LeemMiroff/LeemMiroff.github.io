@@ -3755,6 +3755,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Pin.Acts.Unpin,
 		C3.Plugins.Sprite.Acts.MoveToLayer,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
+		C3.Plugins.Audio.Cnds.OnEnded,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -3827,6 +3829,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{avatar: 0},
 		{fps_text: 0},
 		{ad_test: 0},
+		{MoveTo: 0},
+		{Sprite: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{dt_speed: 0},
@@ -4034,6 +4038,9 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("coin1", "coin2", "coin3");
 		},
+		() => 32,
+		() => "st",
+		() => -60,
 		() => "stand",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4080,6 +4087,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "Control2",
 		() => "fly",
+		() => 17,
 		() => "music_local",
 		() => "local_music"
 	];
