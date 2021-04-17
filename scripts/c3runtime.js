@@ -3718,6 +3718,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.System.Exps.fps,
 		C3.Plugins.System.Acts.SetVar,
+		C3.Plugins.VKBridge.Acts.StorageSet,
 		C3.Behaviors.Pin.Acts.PinByImagePoint,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
@@ -3727,7 +3728,10 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.System.Acts.Wait,
 		C3.Behaviors.Fade.Acts.StartFade,
+		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
+		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
+		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.System.Acts.RestartLayout,
@@ -3750,7 +3754,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Pin.Acts.Unpin,
 		C3.Plugins.Sprite.Acts.MoveToLayer,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
-		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -3775,8 +3778,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.LocalStorage.Exps.ItemValue,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.Platform.Cnds.IsFalling,
-		C3.Plugins.VKBridge.Acts.StorageSet,
-		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Cnds.CompareValue
@@ -3832,8 +3833,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{best_score: 0},
 		{live: 0},
 		{gplay: 0},
-		{money: 0},
-		{value: 0}
+		{money: 0}
 	];
 }
 
@@ -3967,6 +3967,11 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => and("fps: ", f0());
 		},
 		() => 266,
+		() => "money",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue()).toString();
+		},
 		() => "0",
 		() => 2,
 		() => "record",
@@ -4036,7 +4041,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => f0();
 		},
 		() => "photo_200",
-		() => "money",
 		() => "user",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4077,10 +4081,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "Control2",
 		() => "fly",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue()).toString();
-		},
 		() => "music_local",
 		() => "local_music"
 	];
