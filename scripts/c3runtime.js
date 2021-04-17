@@ -3713,7 +3713,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.Touch.Cnds.IsInTouch,
 		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Plugins.Sprite.Acts.SetAnim,
-		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Text.Acts.SetText,
@@ -3724,9 +3723,9 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.System.Acts.Wait,
-		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.System.Cnds.TriggerOnce,
@@ -3738,6 +3737,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.Audio.Acts.PlayByName,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.System.Exps.choose,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Behaviors.Pin.Acts.PinByProperties,
 		C3.Plugins.Sprite.Acts.SetInstanceVar,
@@ -3750,13 +3750,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Pin.Acts.Unpin,
 		C3.Plugins.Sprite.Acts.MoveToLayer,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
-		C3.Plugins.System.Exps.choose,
 		C3.Plugins.Sprite.Acts.SetVisible,
-		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
-		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
-		C3.Plugins.VKBridge.Acts.Authorization,
-		C3.Plugins.VKBridge.Acts.AppGetClient,
 		C3.Plugins.VKBridge.Cnds.AuthorizationSuccess,
 		C3.Plugins.VKBridge.Acts.UserGet,
 		C3.Plugins.VKBridge.Exps.UserID,
@@ -3777,6 +3772,11 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.Platform.Cnds.IsFalling,
 		C3.Plugins.VKBridge.Acts.StorageSet,
+		C3.Plugins.VKBridge.Acts.AdsMobile,
+		C3.Plugins.VKBridge.Acts.BridgeConnect,
+		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
+		C3.Plugins.VKBridge.Acts.Authorization,
+		C3.Plugins.VKBridge.Acts.AppGetClient,
 		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Cnds.CompareValue
@@ -3824,10 +3824,10 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{ads: 0},
 		{avatar: 0},
 		{fps_text: 0},
+		{ad_test: 0},
 		{platforms: 0},
 		{buttons: 0},
-		{everyxsecond: 0},
-		{platforms_speed: 0},
+		{dt_speed: 0},
 		{Score: 0},
 		{best_score: 0},
 		{live: 0},
@@ -3959,26 +3959,21 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		p => {
 			const n0 = p._GetNode(0);
 			const v1 = p._GetNode(1).GetVar();
-			return () => (n0.ExpObject() - v1.GetValue());
+			const f2 = p._GetNode(2).GetBoundMethod();
+			return () => (n0.ExpObject() - (v1.GetValue() * f2()));
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("fps: ", f0());
 		},
-		() => 0.05,
-		() => "Ускорение",
-		() => 1.8,
-		() => 2.1,
-		() => 4,
-		() => 2.6,
-		() => 8,
-		() => 12,
 		() => 266,
 		() => "0",
 		() => 2,
 		() => "record",
 		() => -5,
 		() => "",
+		() => 134,
+		() => 145,
 		() => 72,
 		() => 164,
 		() => 64,
@@ -3988,6 +3983,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 1);
 		},
+		() => 4,
 		() => 260,
 		() => 0.1,
 		p => {
@@ -3999,7 +3995,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => -10,
 		() => 0.6,
 		() => -360,
-		() => 1.6,
+		() => 80,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("tuk", Math.ceil(f0(1)));
@@ -4012,7 +4008,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 300,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.round(f0(1, 5));
+			return () => f0(1, 2, 3, 4, 5);
 		},
 		() => 5,
 		p => {
