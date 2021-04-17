@@ -4035,8 +4035,9 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0();
 		},
-		() => "photo_50",
+		() => "photo_200",
 		() => "money",
+		() => "photo_50",
 		() => "user",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4045,7 +4046,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("photo_50");
+			return () => f0("photo_200");
 		},
 		() => "Layer 1",
 		p => {
