@@ -4096,17 +4096,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0("record");
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => f0(f1("money"));
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => f0(f1("record"));
 		},
 		() => "menu_buttons",
 		p => {
