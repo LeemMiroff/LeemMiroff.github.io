@@ -3718,30 +3718,24 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.System.Exps.fps,
-		C3.Plugins.System.Acts.SetVar,
-		C3.Plugins.VKBridge.Acts.StorageSet,
-		C3.Behaviors.Pin.Acts.PinByImagePoint,
-		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.LocalStorage.Acts.CheckItemExists,
-		C3.Plugins.LocalStorage.Acts.SetItem,
-		C3.Plugins.Audio.Acts.Play,
-		C3.Behaviors.MoveTo.Acts.MoveToPosition,
-		C3.Plugins.System.Acts.Wait,
-		C3.Plugins.Sprite.Acts.SetPos,
-		C3.Behaviors.Fade.Acts.StartFade,
-		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
-		C3.Plugins.VKBridge.Acts.AdsMobile,
-		C3.Plugins.Sprite.Acts.SetVisible,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
+		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Acts.CreateObject,
+		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Spritefont2.Acts.SetInstanceVar,
+		C3.Plugins.System.Acts.SetVar,
 		C3.Behaviors.Platform.Cnds.OnLand,
 		C3.Plugins.Audio.Acts.PlayByName,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Exps.choose,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Behaviors.Pin.Acts.PinByProperties,
@@ -3755,8 +3749,18 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Pin.Acts.Unpin,
 		C3.Plugins.Sprite.Acts.MoveToLayer,
 		C3.Behaviors.MoveTo.Cnds.OnArrived,
-		C3.Plugins.Audio.Cnds.OnEnded,
-		C3.Plugins.Sprite.Acts.SetAnimFrame,
+		C3.Plugins.Sprite.Acts.SetVisible,
+		C3.Plugins.System.Cnds.CompareBoolVar,
+		C3.Plugins.VKBridge.Acts.StorageSet,
+		C3.Plugins.TiledBg.Acts.SetVisible,
+		C3.Behaviors.Fade.Acts.StartFade,
+		C3.Plugins.Spritefont2.Acts.SetHAlign,
+		C3.Plugins.Spritefont2.Acts.SetPos,
+		C3.Behaviors.Pin.Acts.PinByImagePoint,
+		C3.Plugins.LocalStorage.Acts.CheckItemExists,
+		C3.Plugins.LocalStorage.Acts.SetItem,
+		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
+		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -3775,15 +3779,14 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.VKBridge.Cnds.StorageGetSuccess,
 		C3.Plugins.VKBridge.Exps.StorageData,
-		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
-		C3.Plugins.LocalStorage.Cnds.OnItemGet,
-		C3.Plugins.LocalStorage.Exps.ItemValue,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Behaviors.Platform.Cnds.IsFalling,
 		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
-		C3.Plugins.LocalStorage.Cnds.CompareValue
+		C3.Plugins.LocalStorage.Cnds.OnItemGet,
+		C3.Plugins.LocalStorage.Cnds.CompareValue,
+		C3.Plugins.LocalStorage.Exps.ItemValue
 		];
 	};
 	self.C3_JsPropNameTable = [
@@ -3829,13 +3832,16 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{avatar: 0},
 		{fps_text: 0},
 		{ad_test: 0},
-		{MoveTo: 0},
-		{Sprite: 0},
+		{scoresss: 0},
+		{SpriteFontRus: 0},
+		{Fade: 0},
+		{TiledBackground2: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{dt_speed: 0},
 		{Score: 0},
 		{best_score: 0},
+		{life: 0},
 		{live: 0},
 		{gplay: 0},
 		{money: 0}
@@ -3974,21 +3980,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 5,
 		() => 4,
 		() => 266,
-		() => "money",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue()).toString();
-		},
-		() => "0",
-		() => 2,
-		() => "record",
-		() => -5,
-		() => "",
-		() => 72,
-		() => 164,
-		() => 64,
-		() => 0.5,
-		() => 216,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 1);
@@ -4002,6 +3993,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => "sounds",
 		() => -36,
 		() => -10,
+		() => "",
 		() => 0.6,
 		() => -360,
 		() => 80,
@@ -4009,6 +4001,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("tuk", Math.ceil(f0(1)));
 		},
+		() => 2,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -4032,15 +4025,54 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => n0.ExpInstVar();
 		},
 		() => "Animation 1",
+		() => -5,
 		() => 3,
 		() => 10,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("coin1", "coin2", "coin3");
 		},
-		() => 32,
-		() => "st",
-		() => -60,
+		() => "money",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue()).toString();
+		},
+		() => 26,
+		() => "record",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("это рекорд!", "рекорд!", "побит рекорд!", "новый рекорд!");
+		},
+		() => 72,
+		() => 144,
+		() => 64,
+		() => 0.5,
+		() => 222,
+		() => 20,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("тоже результат", "дальше - больше", "хорошее начало", "а-а-а-а-а!", "уже неплохо!");
+		},
+		() => 60,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("отлично!", "очков! вау!", "супер!");
+		},
+		() => 100,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("больше чем у славы!", "невероятно!", "как ты это делаешь?");
+		},
+		() => 150,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("невозможно!", "что???", "профессионал!");
+		},
+		() => 400,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("втф?!", "нет равных!", "читер!");
+		},
 		() => "stand",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4064,13 +4096,17 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("record");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => f0(f1("money"));
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => f0(f1());
+			return () => f0(f1("record"));
 		},
 		() => "menu_buttons",
 		p => {
@@ -4087,8 +4123,14 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "Control2",
 		() => "fly",
+		() => "st",
 		() => "music_local",
-		() => "local_music"
+		() => "local_music",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1());
+		}
 	];
 }
 
