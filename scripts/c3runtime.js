@@ -3712,7 +3712,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Touch.Cnds.IsInTouch,
 		C3.Behaviors.Platform.Acts.SimulateControl,
-		C3.Plugins.Sprite.Acts.SetAnim,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Exps.Y,
@@ -3729,6 +3728,10 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Cnds.OnLayoutStart,
+		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
+		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.Sprite.Acts.SetAnimFrame,
+		C3.Behaviors.Pin.Acts.PinByImagePoint,
 		C3.Plugins.Spritefont2.Acts.SetInstanceVar,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Behaviors.Platform.Cnds.OnLand,
@@ -3756,11 +3759,11 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.Spritefont2.Acts.SetHAlign,
 		C3.Plugins.Spritefont2.Acts.SetPos,
-		C3.Behaviors.Pin.Acts.PinByImagePoint,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.System.Cnds.Else,
+		C3.Plugins.Sprite.Acts.AddInstanceVar,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -3836,6 +3839,15 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{SpriteFontRus: 0},
 		{Fade: 0},
 		{TiledBackground2: 0},
+		{skins: 0},
+		{shlyapa2: 0},
+		{furajka3: 0},
+		{kepka4: 0},
+		{povyazka5: 0},
+		{black6: 0},
+		{Sprite: 0},
+		{vpravo: 0},
+		{vlevo: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{dt_speed: 0},
@@ -3965,7 +3977,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => (n0.ExpObject() + 576);
 		},
 		() => "Control",
-		() => "run",
 		() => "Speed",
 		p => {
 			const n0 = p._GetNode(0);
@@ -3995,13 +4006,21 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => -10,
 		() => "",
 		() => 0.6,
+		() => "anim1",
+		() => 2,
+		() => "shlyapa",
+		() => 3,
+		() => "furajka",
+		() => "kepka",
+		() => "povyazka",
+		() => 6,
+		() => "black",
 		() => -360,
 		() => 80,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("tuk", Math.ceil(f0(1)));
 		},
-		() => 2,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -4026,7 +4045,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		},
 		() => "Animation 1",
 		() => -5,
-		() => 3,
 		() => 10,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4038,6 +4056,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => (v0.GetValue()).toString();
 		},
 		() => 26,
+		() => 7,
 		() => "record",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4073,6 +4092,21 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("втф?!", "нет равных!", "читер!");
 		},
+		() => "anim2",
+		() => "anim3",
+		() => "anim4",
+		() => "anim5",
+		() => "anim6",
+		() => -1,
+		() => 200,
+		() => -200,
+		() => 500,
+		() => -500,
+		() => 1000,
+		() => -1000,
+		() => 5000,
+		() => 9999,
+		() => -9999,
 		() => "stand",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4099,6 +4133,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => f0(f1("money"));
 		},
+		() => "run",
 		() => "menu_buttons",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
