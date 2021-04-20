@@ -3761,7 +3761,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Acts.SetItem,
-		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
