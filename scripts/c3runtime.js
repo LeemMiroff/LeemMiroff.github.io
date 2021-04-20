@@ -3764,6 +3764,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
+		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -4111,6 +4112,10 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 9999,
 		() => -9999,
 		() => "reward",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue() + 10);
+		},
 		() => "stand",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
