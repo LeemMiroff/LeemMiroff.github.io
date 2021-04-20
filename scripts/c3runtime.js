@@ -3719,7 +3719,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Exps.fps,
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
-		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.System.Acts.Wait,
@@ -3759,11 +3758,13 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.Spritefont2.Acts.SetHAlign,
 		C3.Plugins.Spritefont2.Acts.SetPos,
+		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
+		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -3848,6 +3849,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{Sprite: 0},
 		{vpravo: 0},
 		{vlevo: 0},
+		{Sprite2: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{dt_speed: 0},
@@ -3855,6 +3857,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{best_score: 0},
 		{life: 0},
 		{live: 0},
+		{value: 0},
 		{gplay: 0},
 		{money: 0}
 	];
@@ -4017,6 +4020,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => "black",
 		() => -360,
 		() => 80,
+		() => 8,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => and("tuk", Math.ceil(f0(1)));
@@ -4107,6 +4111,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 5000,
 		() => 9999,
 		() => -9999,
+		() => "reward",
 		() => "stand",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
