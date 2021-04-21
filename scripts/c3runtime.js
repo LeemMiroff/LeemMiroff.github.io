@@ -3758,6 +3758,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.Spritefont2.Acts.SetHAlign,
 		C3.Plugins.Spritefont2.Acts.SetPos,
+		C3.Plugins.Spritefont2.Acts.SetScale,
 		C3.Plugins.LocalStorage.Acts.CheckItemExists,
 		C3.Plugins.LocalStorage.Acts.SetItem,
 		C3.Plugins.VKBridge.Acts.AdsMobile,
@@ -3834,7 +3835,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{ads: 0},
 		{avatar: 0},
 		{fps_text: 0},
-		{ad_test: 0},
 		{scoresss: 0},
 		{SpriteFontRus: 0},
 		{Fade: 0},
@@ -3846,9 +3846,11 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		{povyazka5: 0},
 		{black6: 0},
 		{Sprite: 0},
-		{vpravo: 0},
-		{vlevo: 0},
 		{Sprite2: 0},
+		{pravo: 0},
+		{levo: 0},
+		{leader: 0},
+		{podel: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{dt_speed: 0},
@@ -4059,6 +4061,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 			return () => (v0.GetValue()).toString();
 		},
 		() => 26,
+		() => 18,
 		() => 7,
 		() => "record",
 		p => {
@@ -4069,7 +4072,15 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => 144,
 		() => 64,
 		() => 0.5,
+		() => 102,
 		() => 222,
+		() => 28,
+		() => 53,
+		() => 15,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(1, 2, 3);
+		},
 		() => 20,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4113,7 +4124,7 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		() => "reward",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() + 10);
+			return () => (v0.GetValue() + 50);
 		},
 		() => "stand",
 		p => {
