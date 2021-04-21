@@ -3794,11 +3794,12 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
 		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.VKBridge.Acts.ShowWall,
-		C3.Plugins.VKBridge.Acts.LeaderBoardVKUI,
+		C3.Plugins.VKBridge.Acts.LeaderBoard,
 		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.LocalStorage.Exps.ItemValue,
+		C3.Plugins.Sprite.Cnds.IsVisible,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
 		C3.Plugins.VKBridge.Acts.Authorization,
@@ -3880,6 +3881,9 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 		{levo: 0},
 		{leader: 0},
 		{podel: 0},
+		{Sprite3: 0},
+		{Sprite4: 0},
+		{Sprite5: 0},
 		{platforms: 0},
 		{buttons: 0},
 		{timer_reward: 0},
@@ -4156,6 +4160,7 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 			const v0 = p._GetNode(0).GetVar();
 			return () => (and("Я набрал ", v0.GetValue()) + ", в этой сложной игре!");
 		},
+		() => "https://vk.com/app7822462",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
