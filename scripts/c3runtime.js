@@ -3764,11 +3764,11 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.VKBridge.Acts.AdsMobile,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
+		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
 		C3.Plugins.VKBridge.Acts.ShowWall,
 		C3.Plugins.VKBridge.Acts.LeaderBoard,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
-		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
 		C3.Plugins.VKBridge.Acts.Authorization,
 		C3.Plugins.VKBridge.Acts.AppGetClient,
@@ -3791,7 +3791,6 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Cnds.OnItemGet,
-		C3.Plugins.LocalStorage.Cnds.CompareValue,
 		C3.Plugins.LocalStorage.Exps.ItemValue
 		];
 	};
