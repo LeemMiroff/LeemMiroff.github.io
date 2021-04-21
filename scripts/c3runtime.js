@@ -4111,12 +4111,11 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 		() => 222,
 		() => 28,
 		() => 53,
-		() => 15,
+		() => 20,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(1, 2, 3);
+			return () => f0(1, 2);
 		},
-		() => 20,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("тоже результат", "дальше - больше", "хорошее начало", "а-а-а-а-а!", "уже неплохо!");
