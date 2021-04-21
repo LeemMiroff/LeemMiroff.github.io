@@ -3742,8 +3742,6 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Exps.Y,
-		C3.Plugins.Text.Acts.SetText,
-		C3.Plugins.System.Exps.fps,
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
 		C3.Plugins.System.Cnds.TriggerOnce,
@@ -3811,6 +3809,7 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 		C3.Plugins.VKBridge.Cnds.UserGetSuccess,
 		C3.Plugins.VKBridge.Acts.FriendsGet,
 		C3.Plugins.Text.Cnds.CompareInstanceVar,
+		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.VKBridge.Exps.UserData,
 		C3.Plugins.Sprite.Acts.LoadURL,
 		C3.Plugins.VKBridge.Cnds.FriendsGetSuccess,
@@ -4021,10 +4020,6 @@ const i=VALID_WAVES.indexOf(w);if(i===-1)throw new Error("invalid wave");map.get
 			const v1 = p._GetNode(1).GetVar();
 			const f2 = p._GetNode(2).GetBoundMethod();
 			return () => (n0.ExpObject() - (v1.GetValue() * f2()));
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => and("fps: ", f0());
 		},
 		() => 5,
 		() => 4,
