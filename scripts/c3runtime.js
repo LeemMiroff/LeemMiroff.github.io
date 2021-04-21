@@ -3765,6 +3765,8 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Sprite.Acts.AddInstanceVar,
 		C3.Plugins.VKBridge.Cnds.AdsMobileSuccess,
+		C3.Plugins.VKBridge.Acts.ShowWall,
+		C3.Plugins.VKBridge.Acts.LeaderBoard,
 		C3.Plugins.VKBridge.Acts.BridgeConnect,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.VKBridge.Cnds.BridgeConnectSuccess,
@@ -4125,6 +4127,10 @@ value:this.WaveFunc(this._i)*this._mag}]}]}}};
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() + 50);
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (and("Я набрал ", v0.GetValue()) + ", в этой сложной игре!");
 		},
 		() => "stand",
 		p => {
