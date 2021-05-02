@@ -18,7 +18,7 @@ resolve;elem.onerror=reject;elem.src=url;document.head.appendChild(elem)})}let d
 "audio/webm; codecs=vorbis":!!tmpAudio.canPlayType("audio/webm; codecs=vorbis"),"audio/ogg; codecs=vorbis":!!tmpAudio.canPlayType("audio/ogg; codecs=vorbis"),"audio/mp4":!!tmpAudio.canPlayType("audio/mp4"),"audio/mpeg":!!tmpAudio.canPlayType("audio/mpeg")};tmpAudio=null;async function BlobToString(blob){const arrayBuffer=await BlobToArrayBuffer(blob);const textDecoder=new TextDecoder("utf-8");return textDecoder.decode(arrayBuffer)}function BlobToArrayBuffer(blob){return new Promise((resolve,reject)=>
 {const fileReader=new FileReader;fileReader.onload=e=>resolve(e.target.result);fileReader.onerror=err=>reject(err);fileReader.readAsArrayBuffer(blob)})}const queuedArrayBufferReads=[];let activeArrayBufferReads=0;const MAX_ARRAYBUFFER_READS=8;window["RealFile"]=window["File"];const domHandlerClasses=[];const runtimeEventHandlers=new Map;const pendingResponsePromises=new Map;let nextResponseId=0;const runOnStartupFunctions=[];self.runOnStartup=function runOnStartup(f){if(typeof f!=="function")throw new Error("runOnStartup called without a function");
 runOnStartupFunctions.push(f)};const WEBVIEW_EXPORT_TYPES=new Set(["cordova","playable-ad","instant-games"]);function IsWebViewExportType(exportType){return WEBVIEW_EXPORT_TYPES.has(exportType)}let isWrapperFullscreen=false;window.RuntimeInterface=class RuntimeInterface{constructor(opts){this._useWorker=opts.useWorker;this._messageChannelPort=null;this._baseUrl="";this._scriptFolder=opts.scriptFolder;this._workerScriptURLs={};this._worker=null;this._localRuntime=null;this._domHandlers=[];this._runtimeDomHandler=
-null;this._canvas=null;this._jobScheduler=null;this._rafId=-1;this._rafFunc=()=>this._OnRAFCallback();this._rafCallbacks=[];this._exportType=opts.exportType;if(this._useWorker&&(typeof OffscreenCanvas==="undefined"||!navigator["userActivation"]||!SupportsWorkerTypeModule()))this._useWorker=false;if(IsWebViewExportType(this._exportType)&&this._useWorker){console.warn("[C3 runtime] Worker mode is enabled and supported, but is disabled in WebViews due to crbug.com/923007. Reverting to DOM mode.");this._useWorker=
+null;this._canvas=null;this._jobScheduler=null;this._rafId=-1;this._rafFunc=()=>this._OnRAFCallback();this._rafCallbacks=[];this._exportType=opts.exportType;if(this._useWorker&&(typeof OffscreenCanvas==="undefined"||!navigator["userActivation"]||!SupportsWorkerTypeModule()))this._useWorker=false;if(IsWebViewExportType(this._exportType)&&this._useWorker){console.warn("[C3 runtime] Worker mode is enabled and supported, but is currently disabled in WebViews. Reverting to DOM mode.");this._useWorker=
 false}this._localFileBlobs=null;this._localFileStrings=null;if((this._exportType==="html5"||this._exportType==="playable-ad")&&location.protocol.substr(0,4)==="file")alert("Exported games won't work until you upload them. (When running on the file: protocol, browsers block many features from working for security reasons.)");this.AddRuntimeComponentMessageHandler("runtime","cordova-fetch-local-file",e=>this._OnCordovaFetchLocalFile(e));this.AddRuntimeComponentMessageHandler("runtime","create-job-worker",
 e=>this._OnCreateJobWorker(e));if(this._exportType==="cordova")document.addEventListener("deviceready",()=>this._Init(opts));else this._Init(opts)}Release(){this._CancelAnimationFrame();if(this._messageChannelPort){this._messageChannelPort.onmessage=null;this._messageChannelPort=null}if(this._worker){this._worker.terminate();this._worker=null}if(this._localRuntime){this._localRuntime.Release();this._localRuntime=null}if(this._canvas){this._canvas.parentElement.removeChild(this._canvas);this._canvas=
 null}}GetCanvas(){return this._canvas}GetBaseURL(){return this._baseUrl}UsesWorker(){return this._useWorker}GetExportType(){return this._exportType}GetScriptFolder(){return this._scriptFolder}IsiOSCordova(){return isiOSLike&&this._exportType==="cordova"}IsiOSWebView(){return isiOSLike&&IsWebViewExportType(this._exportType)||navigator["standalone"]}async _Init(opts){if(this._exportType==="macos-wkwebview")this._SendWrapperMessage({"type":"ready"});if(this._exportType==="playable-ad"){this._localFileBlobs=
@@ -221,3 +221,240 @@ self.C3AudioCompressorFX=class C3AudioCompressorFX extends AudioFXBase{construct
 super.Release()}ConnectTo(node){this._node["disconnect"]();this._node["connect"](node)}GetInputNode(){return this._node}SetParam(param,value,ramp,time){}};self.C3AudioAnalyserFX=class C3AudioAnalyserFX extends AudioFXBase{constructor(audioDomHandler,fftSize,smoothing){super(audioDomHandler);this._type="analyser";this._params=[fftSize,smoothing];this._node=this._audioContext["createAnalyser"]();this._node["fftSize"]=fftSize;this._node["smoothingTimeConstant"]=smoothing;this._freqBins=new Float32Array(this._node["frequencyBinCount"]);
 this._signal=new Uint8Array(fftSize);this._peak=0;this._rms=0;this._audioDomHandler._AddAnalyser(this)}Release(){this._audioDomHandler._RemoveAnalyser(this);this._node["disconnect"]();super.Release()}Tick(){this._node["getFloatFrequencyData"](this._freqBins);this._node["getByteTimeDomainData"](this._signal);const fftSize=this._node["fftSize"];this._peak=0;let rmsSquaredSum=0;for(let i=0;i<fftSize;++i){let s=(this._signal[i]-128)/128;if(s<0)s=-s;if(this._peak<s)this._peak=s;rmsSquaredSum+=s*s}const LinearToDb=
 self.AudioDOMHandler.LinearToDb;this._peak=LinearToDb(this._peak);this._rms=LinearToDb(Math.sqrt(rmsSquaredSum/fftSize))}ConnectTo(node){this._node["disconnect"]();this._node["connect"](node)}GetInputNode(){return this._node}SetParam(param,value,ramp,time){}GetData(){return{"tag":this.GetTag(),"index":this.GetIndex(),"peak":this._peak,"rms":this._rms,"binCount":this._node["frequencyBinCount"],"freqBins":this._freqBins}}}};
+(() => {
+    const ELEMENT_ID = 'Eponesh_YandexSDK';
+    const DEFAULT_BANNER_STYLES = `
+        display: flex;
+        justify-content: center;
+        align-tems: center;
+        position: absolute;
+        z-index: 10;
+    `;
+    const POSITIONS_MAP = {
+        0: 'top: 0; left: 0;',
+        1: 'top: 0; left: 50%; transform: translateX(-50%);',
+        2: 'top: 0; right: 0;',
+        3: 'top: 0; left: 0; bottom: 0;',
+        4: 'top: 50%; left: 50%; transform: translate(-50%, -50%);',
+        5: 'top: 0; right: 0; bottom: 0;',
+        6: 'bottom: 0; left: 0;',
+        7: 'bottom: 0; left: 50%; transform: translateX(-50%);',
+        8: 'bottom: 0; right: 0;',
+    };
+
+    class DomHandler extends DOMElementHandler {
+        constructor(iRuntime) {
+            super(iRuntime, ELEMENT_ID);
+
+            this.$banners = {};
+
+            // INIT
+            this.AddDOMElementMessageHandler('INIT_SDK', (_, sdkOptions) => this.loadSDK(sdkOptions));
+            this.AddDOMElementMessageHandler('INIT_RTB', () => this.loadRTB());
+            this.AddDOMElementMessageHandler('INIT_METRICA', (_, { metricaId }) => {
+                this.metricaId = metricaId;
+                this.loadMetrica();
+
+                return new Promise((resolve) => {
+                    if (window[`yaCounter${this.metricaId}`]) {
+                        resolve();
+                        return;
+                    }
+
+                    document.addEventListener(`yacounter${this.metricaId}inited`, () => resolve());
+                });
+            });
+
+            // PAYMENTS
+            this.AddDOMElementMessageHandler('YSDK_PAYMENTS_GET', async (_, options) => {
+                this.payments = await this.ysdk.getPayments(options);
+            });
+            this.AddDOMElementMessageHandler('YSDK_PAYMENTS_GET_CATALOG', async () => {
+                const products = await this.payments.getCatalog();
+                // map symbol to objects
+                return products.map(p => ({
+                    productID: p.id || p.productID,
+                    title: p.title,
+                    description: p.description,
+                    imageURI: p.imageURI,
+                    price: parseFloat(p.price)
+                }));
+            });
+            this.AddDOMElementMessageHandler('YSDK_PAYMENTS_GET_PURCHASES', async () => {
+                const purchases = await this.payments.getPurchases();
+                // map symbol to objects
+                return purchases.map(p => ({
+                    productID: p.productID,
+                    purchaseToken: p.purchaseToken,
+                    signature: p.signature
+                }));
+            });
+            this.AddDOMElementMessageHandler('YSDK_PAYMENTS_PURCHASE', (_, { purchaseId }) => this.payments.purchase(purchaseId));
+            this.AddDOMElementMessageHandler('YSDK_PAYMENTS_CONSUME_PURCHASE', (_, { purchaseToken }) => this.payments.consumePurchase(purchaseToken));
+
+            // PLAYER
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_GET', async () => {
+                this.player = await this.ysdk.getPlayer();
+                return {
+                    name: this.player.getName() || '',
+                    id: this.player.getUniqueID() || '',
+                    photoSmall: this.player.getPhoto('small') || '',
+                    photoMedium: this.player.getPhoto('medium') || '',
+                    photoLarge: this.player.getPhoto('large') || ''
+                };
+            });
+
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_GET_FULL_STATS', () => this.player.getStats());
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_GET_STATS', (_, p) => this.player.getStats(p));
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_SET_STATS', (_, p) => this.player.setStats(p));
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_INCREMENT_STATS', (_, p) => this.player.incrementStats(p));
+
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_GET_FULL_DATA', () => this.player.getData());
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_GET_DATA', (_, p) => this.player.getData(p));
+            this.AddDOMElementMessageHandler('YSDK_PLAYER_SET_DATA', (_, p) => this.player.setData(p));
+
+            // AUTH
+            this.AddDOMElementMessageHandler('YSDK_AUTH_OPEN', () => this.ysdk.auth.openAuthDialog());
+
+            // ADS
+            this.AddDOMElementMessageHandler('YSDK_ADS_SHOW_FULLSCREEN', () => this.ysdk.adv.showFullscreenAdv({ callbacks: {} }));
+            this.AddDOMElementMessageHandler('YSDK_ADS_SHOW_REWARDED', () => {
+                const callbacks = {
+                    onOpen: () => this.PostToRuntimeElement('YSDK_ADS_REWARDED_OPEN', ELEMENT_ID),
+                    onRewarded: () => this.PostToRuntimeElement('YSDK_ADS_REWARDED_REWARD', ELEMENT_ID),
+                    onClose: () => this.PostToRuntimeElement('YSDK_ADS_REWARDED_CLOSE', ELEMENT_ID),
+                    onError: () => this.PostToRuntimeElement('YSDK_ADS_REWARDED_ERROR', ELEMENT_ID)
+                };
+                this.ysdk.adv.showRewardedVideo({ callbacks });
+            });
+
+            // METRICA
+            this.AddDOMElementMessageHandler('YSDK_METRICA_REACH_GOAL', (_, { target }) => ym(this.metricaId, 'reachGoal', target));
+
+            // RTB BANNERS
+            this.AddDOMElementMessageHandler('YSDK_RTB_CREATE_BANNER', (_, { id, x, y, width, height, styles }) => {
+                if (!this.$banners[id]) {
+                    this.$banners[id] = this.createBanner(id, `
+                        ${DEFAULT_BANNER_STYLES}
+                        top: ${x}px;
+                        left: ${y}px;
+                        width: ${width === 0 ? 'auto' : `${width}px`};
+                        height: ${height === 0 ? 'auto' : `${height}px`};
+                        ${styles}
+                    `);
+                }
+
+                this.rtbRenderBanner(id);
+            });
+
+            this.AddDOMElementMessageHandler('YSDK_RTB_CREATE_STICKY_BANNER', (_, { id, position, width, height, styles }) => {
+                if (!this.$banners[id]) {
+                    this.$banners[id] = this.createBanner(id, `
+                        ${DEFAULT_BANNER_STYLES}
+                        ${POSITIONS_MAP[position] || ''}
+                        width: ${width === 0 ? '100%' : `${width}px`};
+                        height: ${height === 0 ? '100%' : `${height}px`};
+                        ${styles}
+                    `);
+                }
+                this.rtbRenderBanner(id);
+            });
+
+            this.AddDOMElementMessageHandler('YSDK_RTB_DESTROY_BANNER', (_, { id }) => this.destroyBanner(id));
+            this.AddDOMElementMessageHandler('YSDK_RTB_DISPLAY_BANNER', (_, { id }) => {
+                this.rtbRenderBanner(id);
+            });
+            this.AddDOMElementMessageHandler('YSDK_RTB_REFRESH_BANNER', (_, { id }) => {
+                this.destroyBanner(id);
+                this.rtbRenderBanner(id);
+            });
+        }
+
+        loadMetrica() {
+            (function(m, e, t, r, i, k, a) {
+                m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(this.metricaId, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                triggerEvent: true
+            });
+        }
+
+        loadSDK({ screen }) {
+            return new Promise((resolve) => {
+                const initSDK = async () => {
+                    this.ysdk = await YaGames.init({
+                        screen,
+                        adv: {
+                            onAdvClose: (wasShown) => this.PostToRuntimeElement('SDK_ADS_CLOSED', ELEMENT_ID, { wasShown })
+                        },
+                    });
+                    resolve();
+                }
+
+                (function(d) {
+                    var t = d.getElementsByTagName('script')[0];
+                    var s = d.createElement('script');
+                    s.src = 'https://yandex.ru/games/sdk/v2';
+                    s.async = true;
+                    t.parentNode.insertBefore(s, t);
+                    s.onload = initSDK;
+                })(document);
+            });
+        }
+
+        loadRTB () {
+            return new Promise((resolve) => {
+                ((w, d, n, s, t) => {
+                    w[n] = w[n] || [];
+                    t = d.getElementsByTagName("script")[0];
+                    s = d.createElement("script");
+                    s.onload = () => resolve();
+                    s.type = "text/javascript";
+                    s.src = "//an.yandex.ru/system/context.js";
+                    s.async = true;
+                    t.parentNode.insertBefore(s, t);
+                })(window, document, "yandexContextAsyncCallbacks");
+            });
+        }
+
+        rtbRenderBanner (id) {
+            if (!this.$banners[id]) {
+                return;
+            }
+
+            document.body.appendChild(this.$banners[id]);
+
+            Ya.Context.AdvManager.render({
+                blockId: id,
+                renderTo: id,
+                async: true,
+                onRender: () => this.PostToRuntimeElement('SDK_RTB_RENDER', ELEMENT_ID, { id })
+            });
+        }
+
+        createBanner (id, styles) {
+            const div = document.createElement('div');
+            div.id = id;
+            div.style.cssText = styles;
+            return div;
+        }
+
+        destroyBanner (id) {
+            if (this.$banners[id]) {
+                this.$banners[id].remove();
+                this.$banners[id].innerHTML = '';
+            }
+        }
+    }
+
+    RuntimeInterface.AddDOMHandlerClass(DomHandler);
+})();
